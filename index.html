@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Important Question</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #62ba0b, #062905);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            min-width: 120px; /* Ensure buttons are large enough for mobile */
+        }
+
+        #yes {
+            background: #048956;
+            color: white;
+            box-shadow: 0 5px 15px rgba(30, 231, 12, 0.4);
+        }
+
+        #yes:hover {
+            background: #87ff47;
+        }
+
+        #no {
+            background: #57606f;
+            color: white;
+            position: relative;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            button {
+                font-size: 18px;
+                padding: 12px 24px;
+            }
+            .button-container {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.2rem;
+            }
+            button {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 id="question">क्या तुम गधे हो?</h1>
+    <div class="button-container">
+        <button id="yes" onclick="updateText()">हाँ</button>
+        <button id="no" ontouchstart="moveButton()" onmouseover="moveButton()">नहीं</button>
+    </div>
+
+    <script>
+        function moveButton() {
+            let button = document.getElementById("no");
+            let maxX = window.innerWidth - button.offsetWidth - 10;
+            let maxY = window.innerHeight - button.offsetHeight - 10;
+
+            let x = Math.random() * maxX;
+            let y = Math.random() * maxY;
+
+            button.style.position = "absolute";
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+        }
+
+        function updateText() {
+            // Change the text of the <h1> element
+            document.getElementById("question").innerText = "मैं जनता था तू गधा है 😂";
+        }
+
+        // Prevent context menu on long press for mobile
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>
